@@ -8,8 +8,8 @@ RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 7F0CEB10 ;\
   | /usr/bin/tee /etc/apt/sources.list.d/mongodb.list
 
 RUN apt-get update
-RUN apt-get upgrade
 RUN apt-get -yq install \
+    git-all \
     php5-dev \
     php5-cli \
     php5-imagick \
