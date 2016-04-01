@@ -21,9 +21,7 @@ RUN apt-get -yq install \
       curl \
       git-core \
       php5-imagick \
-      php5-gd \
-      php5-mcrypt
-RUN /usr/sbin/php5enmod mcrypt
+      php5-gd
 
 # Drivers and libraries
 RUN /usr/bin/pecl install -f mongo-1.5.8
