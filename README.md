@@ -11,17 +11,17 @@ required files
 is telling docker to build the Dockerfile found in your current directory (`.`).
 
   ```bash
-  $ docker build -t bufferapp/apache-php .
+  $ docker build -t bufferapp/apache-php:1.2.0 .
   # ...docker creates your image...
   $ docker images
   REPOSITORY              TAG                 IMAGE ID            CREATED             VIRTUAL SIZE
-  bufferapp/apache-php    latest              94edd5d07de6        30 seconds ago      508.4 MB
+  bufferapp/apache-php    1.2.0               94edd5d07de6        30 seconds ago      508.4 MB
   ```
 
 3. After testing it out publish it to Docker Hub:
 
   ```
-  $ docker push bufferapp/apache-php
+  $ docker push bufferapp/apache-php:1.2.0
   ```
   
 4. Add an optional description for the image on Docker Hub
