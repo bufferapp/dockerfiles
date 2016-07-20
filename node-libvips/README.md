@@ -8,4 +8,4 @@ docker image.
 
 ## Tags
 
-- [6.3.0] - Node.js 6.3.0, libvips 8.2.3
+- **6.3.0** - Node.js 6.3.0, libvips 8.2.3
