@@ -1,4 +1,4 @@
-FROM php:7.0.8
+FROM php:7.0.12
 
 RUN apt-get update
 RUN apt-get -yq install \
