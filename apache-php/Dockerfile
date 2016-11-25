@@ -1,15 +1,11 @@
 FROM php:5.5.35-apache
 MAINTAINER Dan Farrelly <dan@buffer.com>
 
-# Add sources for Mongo drivers
-RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 7F0CEB10 ;\
-  echo 'deb http://downloads-distro.mongodb.org/repo/ubuntu-upstart dist 10gen' \
-  | /usr/bin/tee /etc/apt/sources.list.d/mongodb.list
-
 RUN apt-get update
 RUN apt-get -yq install \
       build-essential \
       libmemcached-dev \
+      libmcrypt-dev \
       php-pear \
       libcurl3 \
       php5-dev \
@@ -19,10 +15,12 @@ RUN apt-get -yq install \
       php5-imagick \
       php5-gd
 
+RUN docker-php-ext-install mcrypt
+
 # Drivers and libraries
 RUN pecl install -f mongo-1.5.8
 RUN pecl install -f memcached-2.2.0
-RUN pecl install -f redis
+RUN pecl install -f redis-2.2.8
 RUN docker-php-ext-enable mongo memcached redis
 
 # Configure Apache
