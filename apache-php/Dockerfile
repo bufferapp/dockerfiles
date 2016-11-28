@@ -1,4 +1,4 @@
-FROM php:5.5.35-apache
+FROM php:5.5.36-apache
 MAINTAINER Dan Farrelly <dan@buffer.com>
 
 RUN apt-get update
