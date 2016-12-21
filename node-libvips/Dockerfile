@@ -1,9 +1,9 @@
-FROM node:6.3.0-slim
+FROM node:6.9.2-slim
 
 # Inspired by from https://github.com/marcbachmann/dockerfile-libvips/blob/master/Dockerfile
 ENV LIBVIPS_VERSION_MAJOR 8
-ENV LIBVIPS_VERSION_MINOR 2
-ENV LIBVIPS_VERSION_PATCH 3
+ENV LIBVIPS_VERSION_MINOR 4
+ENV LIBVIPS_VERSION_PATCH 5
 ENV LIBVIPS_VERSION $LIBVIPS_VERSION_MAJOR.$LIBVIPS_VERSION_MINOR.$LIBVIPS_VERSION_PATCH
 
 RUN \
@@ -31,3 +31,5 @@ RUN \
   apt-get autoclean && \
   apt-get clean && \
   rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+ADD policy.xml /etc/ImageMagick-6/
