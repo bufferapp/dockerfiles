@@ -1,5 +1,5 @@
-FROM php:5.5.36-apache
-MAINTAINER Dan Farrelly <dan@buffer.com>
+FROM php:5.6.28-apache
+MAINTAINER Steven Cheng <steven@buffer.com>
 
 RUN apt-get update
 RUN apt-get -yq install \
