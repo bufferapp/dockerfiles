@@ -1,50 +1,30 @@
-FROM ubuntu:trusty
-MAINTAINER Dan Farrelly <dan@buffer.com>
-
-# Add sources for Mongo drivers
-RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 7F0CEB10 ;\
-  echo 'deb http://downloads-distro.mongodb.org/repo/ubuntu-upstart dist 10gen' \
-  | /usr/bin/tee /etc/apt/sources.list.d/mongodb.list
+FROM php:5.6.28-apache
+MAINTAINER Steven Cheng <steven@buffer.com>
 
 RUN apt-get update
 RUN apt-get -yq install \
       build-essential \
-      apache2 \
-      libapache2-mod-php5 \
       libmemcached-dev \
+      libmcrypt-dev \
       php-pear \
       libcurl3 \
-      php5 \
       php5-dev \
       php5-curl \
       php5-cli \
-      curl \
-      git-core \
+      php-calendar \
       php5-imagick \
       php5-gd
 
-# Drivers and libraries
-RUN /usr/bin/pecl install -f mongo-1.5.8
-RUN /usr/bin/pecl install -f memcached-2.0.1
-RUN /usr/bin/pecl install -f redis
-RUN /usr/bin/pecl install -f xdebug-2.2.5
+RUN docker-php-ext-install mcrypt
 
-# Composer
-ENV COMPOSER_HOME /app
-RUN curl -sS https://getcomposer.org/installer | php ;\
-  mv composer.phar /usr/local/bin/composer
-# NOTE - Add your composer.json to the /app dir and run composer install, ex:
-#   ADD composer.json /app/composer.json
-#   RUN composer install
+# Drivers and libraries
+RUN pecl install -f mongo-1.5.8
+RUN pecl install -f memcached-2.2.0
+RUN pecl install -f redis-2.2.8
+RUN docker-php-ext-enable mongo memcached redis
 
 # Configure Apache
-COPY php.ini /etc/php5/apache2/php.ini
-COPY php.ini /etc/php5/cli/php.ini
-
-RUN /usr/bin/pear config-set php_ini /etc/php5/apache2/php.ini ;\
-  /usr/bin/pecl config-set php_ini /etc/php5/apache2/php.ini
-
-ENV ALLOW_OVERRIDE **False**
+COPY php.ini /usr/local/etc/php/
 
 RUN /usr/sbin/a2enmod expires ; /usr/sbin/a2enmod ssl ;\
   /usr/sbin/a2enmod headers ; /usr/sbin/a2enmod rewrite
@@ -53,9 +33,6 @@ RUN /usr/sbin/a2enmod expires ; /usr/sbin/a2enmod ssl ;\
 RUN mkdir -p /var/log/buffer
 RUN chmod 777 /var/log/buffer
 
-ADD run.sh /run.sh
-RUN chmod 755 /*.sh
-
 EXPOSE 80
 EXPOSE 443
 
@@ -63,4 +40,3 @@ EXPOSE 443
 RUN mkdir -p /app && rm -fr /var/www/html && ln -s /app /var/www/html
 
 WORKDIR /app
-CMD ["/run.sh"]
