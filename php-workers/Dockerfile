@@ -16,5 +16,9 @@ RUN curl -sS https://getcomposer.org/installer | \
 RUN pecl install mongo-1.4.5 &&\
     echo "extension=mongo.so" > /usr/local/etc/php/conf.d/ext-mongo.ini
 
+#Install redis
+RUN pecl install redis-2.2.4 &&\
+    echo "extension=redis.so" > /usr/local/etc/php/conf.d/ext-redis.ini
+
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
