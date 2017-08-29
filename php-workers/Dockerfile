@@ -24,10 +24,6 @@ RUN pecl install mongo-1.4.5 &&\
 RUN pecl install redis-2.2.4 &&\
     echo "extension=redis.so" > /usr/local/etc/php/conf.d/ext-redis.ini
 
-# create /app and sym-link to /var/www/html
-RUN mkdir -p /app &&\
-    rm -fr /var/www/html &&\
-    mkdir -p /var/www/html &&\
-    ln -s /app /var/www/html
+RUN mkdir -p /var/www/html
 
-WORKDIR /app
+WORKDIR /var/www/html
