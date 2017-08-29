@@ -7,7 +7,9 @@ RUN apt-get update
 RUN apt-get -yq install \
       git-core \
       build-essential \
-      libmemcached-dev
+      libmemcached-dev \
+      zip \
+      unzip
 
 # Upgrade tzdata to 2017b version
 RUN apt-get -y upgrade tzdata-java=2017b-0+deb8u1
