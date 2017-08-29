@@ -3,7 +3,7 @@ FROM php:5.6.31-cli
 
 RUN apt-get update
 
-#Install common binaries workers need
+# Install common binaries workers need
 RUN apt-get -yq install \
       git-core \
       build-essential \
@@ -12,17 +12,19 @@ RUN apt-get -yq install \
 # Upgrade tzdata to 2017b version
 RUN apt-get -y upgrade tzdata-java=2017b-0+deb8u1
 
-#Install Composer 
+# Install Composer
 RUN curl -sS https://getcomposer.org/installer | \
       php -- --install-dir=/usr/local/bin --filename=composer
 
-#Install mongo extension
+# Install mongo extension
 RUN pecl install mongo-1.4.5 &&\
     echo "extension=mongo.so" > /usr/local/etc/php/conf.d/ext-mongo.ini
 
-#Install redis
+# Install redis
 RUN pecl install redis-2.2.4 &&\
     echo "extension=redis.so" > /usr/local/etc/php/conf.d/ext-redis.ini
 
-RUN mkdir -p /usr/src/app
-WORKDIR /usr/src/app
+# create /app and sym-link to /var/www/html
+RUN mkdir -p /app && rm -fr /var/www/html && ln -s /app /var/www/html
+
+WORKDIR /app
