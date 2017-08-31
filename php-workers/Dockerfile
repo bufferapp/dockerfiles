@@ -8,6 +8,7 @@ RUN apt-get -yq install \
       git-core \
       build-essential \
       libmemcached-dev \
+      libz-dev \
       zip \
       unzip
 
@@ -18,13 +19,11 @@ RUN apt-get -y upgrade tzdata-java=2017b-0+deb8u1
 RUN curl -sS https://getcomposer.org/installer | \
       php -- --install-dir=/usr/local/bin --filename=composer
 
-# Install mongo extension
-RUN pecl install mongo-1.4.5 &&\
-    echo "extension=mongo.so" > /usr/local/etc/php/conf.d/ext-mongo.ini
-
-# Install redis
-RUN pecl install redis-2.2.4 &&\
-    echo "extension=redis.so" > /usr/local/etc/php/conf.d/ext-redis.ini
+# Install drivers and activate 
+RUN pecl install mongo-1.4.5
+RUN pecl install redis-2.2.4
+RUN pecl install memcached-2.2.0
+RUN docker-php-ext-enable mongo memcached redis
 
 RUN mkdir -p /var/www/html
 
