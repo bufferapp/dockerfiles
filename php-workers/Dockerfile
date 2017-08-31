@@ -8,9 +8,12 @@ RUN apt-get -yq install \
       git-core \
       build-essential \
       libmemcached-dev \
+      libmcrypt-dev \
       libz-dev \
       zip \
       unzip
+
+RUN docker-php-ext-install mcrypt
 
 # Upgrade tzdata to 2017b version
 RUN apt-get -y upgrade tzdata-java=2017b-0+deb8u1
