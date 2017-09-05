@@ -13,7 +13,7 @@ RUN apt-get -yq install \
       zip \
       unzip
 
-RUN docker-php-ext-install mcrypt
+RUN docker-php-ext-install mcrypt sockets
 
 # Upgrade tzdata to 2017b version
 RUN apt-get -y upgrade tzdata-java=2017b-0+deb8u1
