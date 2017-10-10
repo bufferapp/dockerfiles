@@ -1,4 +1,4 @@
-FROM php:7.1
+FROM php:7.1-fpm
 
 RUN apt-get update
 RUN apt-get -yq install \
