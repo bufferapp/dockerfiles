@@ -1,5 +1,5 @@
-# PHP 5.6.31 on Debian 8.9 (jessie)
-FROM php:5.6.31-cli
+# PHP 5.6.36 on Debian 9 (stretch)
+FROM php:5.6.36-cli-stretch
 
 RUN apt-get update
 
@@ -15,8 +15,7 @@ RUN apt-get -yq install \
 
 RUN docker-php-ext-install mcrypt sockets
 
-# Upgrade tzdata to 2017b version
-RUN apt-get -y upgrade tzdata-java=2017b-0+deb8u1
+RUN apt-get -y install nano emacs
 
 # Install Composer
 RUN curl -sS https://getcomposer.org/installer | \
