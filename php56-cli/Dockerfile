@@ -15,7 +15,7 @@ RUN apt-get -yq install \
 
 RUN docker-php-ext-install mcrypt sockets
 
-RUN apt-get -y install nano emacs
+RUN apt-get -y install nano vim
 
 # Install Composer
 RUN curl -sS https://getcomposer.org/installer | \
