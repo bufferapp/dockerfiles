@@ -1,5 +1,5 @@
 IMG_NAME := bufferapp/php56-worker
-IMG_VERSION := 0.1
+IMG_VERSION := 0.2-php5.6.36-cli-stretch
 
 .PHONY: build
 build:
