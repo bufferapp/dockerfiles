@@ -1,4 +1,5 @@
-FROM php:5.6.28-apache
+FROM php:5.6.36-apache-stretch
+
 MAINTAINER Steven Cheng <steven@buffer.com>
 
 RUN apt-get update
