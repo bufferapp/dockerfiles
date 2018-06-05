@@ -7,14 +7,22 @@ RUN apt-get -yq install \
       build-essential \
       libmemcached-dev \
       libmcrypt-dev \
-      php-pear \
       libcurl3 \
-      php5-dev \
-      php5-curl \
-      php5-cli \
-      php-calendar \
-      php5-imagick \
-      php5-gd
+      libfreetype6-dev \
+      libjpeg62-turbo-dev \
+      libjpeg-dev \
+      libpng-dev \
+      libz-dev \
+      unzip \
+      zip
+
+#      php-pear \     # help to install some extentions
+#      php5-dev \     # get the headers for  extensions
+#      php5-curl \    # already compiled in the php extentions
+#      php5-cli \     # i don't think we need that?
+#      php-calendar \ # unsure: if used in php, we would need it
+#      php5-imagick \ # unsure: if used in php, we would need it
+#      php5-gd        # installed in Dockerfile.development
 
 RUN docker-php-ext-install mcrypt
 
