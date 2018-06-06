@@ -5,6 +5,7 @@ MAINTAINER Steven Cheng <steven@buffer.com>
 RUN apt-get update
 RUN apt-get -yq install \
       build-essential \
+      libmagickwand-dev \
       libmemcached-dev \
       libmcrypt-dev \
       libcurl3 \
@@ -25,12 +26,15 @@ RUN apt-get -yq install \
 #      php5-gd        # installed in Dockerfile.development
 
 RUN docker-php-ext-install mcrypt
+RUN docker-php-ext-install calendar
 
 # Drivers and libraries
 RUN pecl install -f mongo-1.5.8
 RUN pecl install -f memcached-2.2.0
 RUN pecl install -f redis-2.2.8
-RUN docker-php-ext-enable mongo memcached redis
+RUN pecl install -f imagick
+
+RUN docker-php-ext-enable mongo memcached redis imagick
 
 # Configure Apache
 COPY php.ini /usr/local/etc/php/
