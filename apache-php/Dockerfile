@@ -17,13 +17,17 @@ RUN apt-get -yq install \
       unzip \
       zip
 #      php-pear \     # help to install some extentions
-#      php5-dev \     # get the headers for  extensions
+#      php5-dev \     # get the headers for some extensions
 #      php5-cli \     # I don't think we need that
 
+
+# Drivers and libraries
+RUN docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/
+
+RUN docker-php-ext-install -j1 gd
 RUN docker-php-ext-install mcrypt
 RUN docker-php-ext-install calendar
 
-# Drivers and libraries
 RUN pecl install -f mongo-1.5.8
 RUN pecl install -f memcached-2.2.0
 RUN pecl install -f redis-2.2.8
