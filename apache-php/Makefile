@@ -3,7 +3,7 @@ IMG_VERSION := 5.6.36-apache-stretch
 
 .PHONY: build
 build:
-	docker build --no-cache -t $(IMG_NAME):$(IMG_VERSION) -f Dockerfile .
+	docker build -t $(IMG_NAME):$(IMG_VERSION) -f Dockerfile .
 
 .PHONY: run
 run:
