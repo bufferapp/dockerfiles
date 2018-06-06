@@ -2,8 +2,8 @@ FROM php:5.6.36-apache-stretch
 
 MAINTAINER Steven Cheng <steven@buffer.com>
 
-RUN apt-get update
-RUN apt-get -yq install \
+RUN apt-get update && \
+      apt-get -yq install \
       build-essential \
       libmagickwand-dev \ 
       libmemcached-dev \
