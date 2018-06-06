@@ -5,7 +5,7 @@ MAINTAINER Steven Cheng <steven@buffer.com>
 RUN apt-get update
 RUN apt-get -yq install \
       build-essential \
-      libmagickwand-dev \
+      libmagickwand-dev \ 
       libmemcached-dev \
       libmcrypt-dev \
       libcurl3 \
@@ -16,14 +16,9 @@ RUN apt-get -yq install \
       libz-dev \
       unzip \
       zip
-
 #      php-pear \     # help to install some extentions
 #      php5-dev \     # get the headers for  extensions
-#      php5-curl \    # already compiled in the php extentions
-#      php5-cli \     # i don't think we need that?
-#      php-calendar \ # unsure: if used in php, we would need it
-#      php5-imagick \ # unsure: if used in php, we would need it
-#      php5-gd        # installed in Dockerfile.development
+#      php5-cli \     # I don't think we need that
 
 RUN docker-php-ext-install mcrypt
 RUN docker-php-ext-install calendar
