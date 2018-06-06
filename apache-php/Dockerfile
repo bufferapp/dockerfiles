@@ -24,7 +24,7 @@ RUN apt-get -yq install \
 # Drivers and libraries
 RUN docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/
 
-RUN docker-php-ext-install -j1 gd
+RUN docker-php-ext-install -j$(nproc) gd
 RUN docker-php-ext-install mcrypt
 RUN docker-php-ext-install calendar
 
