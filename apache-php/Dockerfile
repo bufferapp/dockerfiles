@@ -23,15 +23,11 @@ RUN apt-get update && \
 
 # Drivers and libraries
 RUN docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/
-
-RUN docker-php-ext-install -j$(nproc) gd
-RUN docker-php-ext-install mcrypt
-RUN docker-php-ext-install calendar
-
-RUN pecl install -f mongo-1.5.8
-RUN pecl install -f memcached-2.2.0
-RUN pecl install -f redis-2.2.8
-RUN pecl install -f imagick
+RUN docker-php-ext-install -j$(nproc) gd mcrypt calendar
+RUN pecl install -f mongo-1.5.8 && \
+    pecl install -f memcached-2.2.0 && \
+    pecl install -f redis-2.2.8 && \
+    pecl install -f imagick
 
 RUN docker-php-ext-enable mongo memcached redis imagick
 
@@ -42,8 +38,8 @@ RUN /usr/sbin/a2enmod expires ; /usr/sbin/a2enmod ssl ;\
   /usr/sbin/a2enmod headers ; /usr/sbin/a2enmod rewrite
 
 # Log folder for metrics and elastic search logging
-RUN mkdir -p /var/log/buffer
-RUN chmod 777 /var/log/buffer
+RUN mkdir -p /var/log/buffer && \
+    chmod 777 /var/log/buffer
 
 EXPOSE 80
 EXPOSE 443
