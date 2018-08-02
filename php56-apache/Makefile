@@ -1,4 +1,4 @@
-IMG_NAME := bufferapp/php56-cli
+IMG_NAME := bufferapp/php56-apache
 IMG_VERSION := 5.6.36-cli-stretch-igbinary
 
 .PHONY: build

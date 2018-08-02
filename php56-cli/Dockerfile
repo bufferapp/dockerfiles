@@ -28,10 +28,20 @@ RUN apt-get -y install nano vim
 RUN curl -sS https://getcomposer.org/installer | \
       php -- --install-dir=/usr/local/bin --filename=composer
 
-# Install drivers and activate 
+# Install drivers and activate
 RUN pecl install mongo-1.4.5
 RUN pecl install redis-2.2.4
-RUN pecl install memcached-2.2.0
+# pecl memcached does not support igbinary
+RUN pecl install igbinary && \
+    docker-php-ext-enable igbinary && \
+    apt-get install -y libmemcached-dev=1.0.18-4.1 && \
+    pecl download memcached-2.2.0 && \
+    tar xzvf memcached-2.2.0.tgz && \
+    cd memcached-2.2.0 && \
+    phpize && \
+    ./configure --enable-memcached-igbinary --disable-memcached-sasl && \
+    make && \
+    make install
 RUN docker-php-ext-enable mongo memcached redis
 
 RUN mkdir -p /var/www/html
