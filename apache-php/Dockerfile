@@ -25,9 +25,19 @@ RUN apt-get update && \
 RUN docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/
 RUN docker-php-ext-install -j$(nproc) gd mcrypt calendar pcntl
 RUN pecl install -f mongo-1.5.8 && \
-    pecl install -f memcached-2.2.0 && \
     pecl install -f redis-2.2.8 && \
     pecl install -f imagick
+
+RUN pecl install igbinary && \
+    docker-php-ext-enable igbinary && \
+    apt-get install -y libmemcached-dev=1.0.18-4.1 && \
+    pecl download memcached-2.2.0 && \
+    tar xzvf memcached-2.2.0.tgz && \
+    cd memcached-2.2.0 && \
+    phpize && \
+    ./configure --enable-memcached-igbinary --disable-memcached-sasl && \
+    make && \
+    make install
 
 RUN docker-php-ext-enable mongo memcached redis imagick
 
