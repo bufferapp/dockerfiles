@@ -24,7 +24,7 @@ RUN apt-get update && \
 # Drivers and libraries
 RUN docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/
 RUN docker-php-ext-install -j$(nproc) gd mcrypt calendar pcntl
-RUN pecl install -f mongo-1.5.8 && \
+RUN pecl install -f mongodb-1.5.2 && \
     pecl install -f redis-2.2.8 && \
     pecl install -f imagick && \
     pecl install igbinary && \
@@ -37,7 +37,7 @@ RUN pecl install -f mongo-1.5.8 && \
     ./configure --enable-memcached-igbinary --disable-memcached-sasl && \
     make && \
     make install && \
-    docker-php-ext-enable mongo memcached redis imagick
+    docker-php-ext-enable mongodb memcached redis imagick
 
 # Configure Apache
 COPY php.ini /usr/local/etc/php/
