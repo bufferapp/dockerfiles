@@ -5,7 +5,7 @@ MAINTAINER Steven Cheng <steven@buffer.com>
 RUN apt-get update && \
       apt-get -yq install \
       build-essential \
-      libmagickwand-dev \ 
+      libmagickwand-dev \
       libmemcached-dev \
       libmcrypt-dev \
       libcurl3 \
@@ -26,9 +26,8 @@ RUN docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-di
 RUN docker-php-ext-install -j$(nproc) gd mcrypt calendar pcntl
 RUN pecl install -f mongo-1.5.8 && \
     pecl install -f redis-2.2.8 && \
-    pecl install -f imagick
-
-RUN pecl install igbinary && \
+    pecl install -f imagick && \
+    pecl install igbinary && \
     docker-php-ext-enable igbinary && \
     apt-get install -y libmemcached-dev=1.0.18-4.1 && \
     pecl download memcached-2.2.0 && \
@@ -37,9 +36,8 @@ RUN pecl install igbinary && \
     phpize && \
     ./configure --enable-memcached-igbinary --disable-memcached-sasl && \
     make && \
-    make install
-
-RUN docker-php-ext-enable mongo memcached redis imagick
+    make install && \
+    docker-php-ext-enable mongo memcached redis imagick
 
 # Configure Apache
 COPY php.ini /usr/local/etc/php/
