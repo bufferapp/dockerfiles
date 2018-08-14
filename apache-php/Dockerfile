@@ -24,7 +24,7 @@ RUN apt-get update && \
 # Drivers and libraries
 RUN docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/
 RUN docker-php-ext-install -j$(nproc) gd mcrypt calendar pcntl
-RUN pecl install -f mongodb-1.5.2 && \
+RUN pecl install -f mongodb-1.4.4 && \
     pecl install -f redis-2.2.8 && \
     pecl install -f imagick && \
     pecl install igbinary && \
