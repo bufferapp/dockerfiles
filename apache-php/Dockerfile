@@ -17,10 +17,6 @@ RUN apt-get update && \
       libz-dev \
       unzip \
       zip
-#      php-pear \     # help to install some extentions
-#      php5-dev \     # get the headers for some extensions
-#      php5-cli \     # I don't think we need that
-
 
 # Drivers and libraries
 RUN docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/
