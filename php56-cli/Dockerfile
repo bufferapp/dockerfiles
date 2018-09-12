@@ -9,6 +9,7 @@ RUN apt-get -yq install \
       build-essential \
       libmemcached-dev \
       libmcrypt-dev \
+      libssl-dev \
       libfreetype6-dev \
       libjpeg62-turbo-dev \
       libjpeg-dev \
@@ -24,15 +25,10 @@ RUN docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-di
 
 RUN apt-get -y install nano vim
 
-# Install Composer
-RUN curl -sS https://getcomposer.org/installer | \
-      php -- --install-dir=/usr/local/bin --filename=composer
-
 # Install drivers and activate
-RUN pecl install mongo-1.4.5
-RUN pecl install redis-2.2.4
-# pecl memcached does not support igbinary
-RUN pecl install igbinary && \
+RUN pecl install -f mongodb-1.3.4 && \
+    pecl install redis-2.2.4 && \
+    pecl install igbinary && \
     docker-php-ext-enable igbinary && \
     apt-get install -y libmemcached-dev=1.0.18-4.1 && \
     pecl download memcached-2.2.0 && \
@@ -41,8 +37,8 @@ RUN pecl install igbinary && \
     phpize && \
     ./configure --enable-memcached-igbinary --disable-memcached-sasl && \
     make && \
-    make install
-RUN docker-php-ext-enable mongo memcached redis
+    make install && \
+    docker-php-ext-enable mongodb memcached redis
 
 RUN mkdir -p /var/www/html
 
