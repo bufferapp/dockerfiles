@@ -1,5 +1,5 @@
 IMG_NAME := bufferapp/php56-cli
-IMG_VERSION := 5.6.36-cli-stretch-igbinary
+IMG_VERSION := 5.6.36-cli-stretch-igbinary-mongodb-1.5.3
 
 .PHONY: build
 build:

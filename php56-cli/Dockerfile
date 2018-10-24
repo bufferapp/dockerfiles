@@ -29,7 +29,7 @@ RUN curl -sS https://getcomposer.org/installer | \
       php -- --install-dir=/usr/local/bin --filename=composer
 
 # Install drivers and activate
-RUN pecl install mongo-1.4.5
+RUN pecl install mongodb-1.5.3
 RUN pecl install redis-2.2.4
 # pecl memcached does not support igbinary
 RUN pecl install igbinary && \
@@ -42,7 +42,7 @@ RUN pecl install igbinary && \
     ./configure --enable-memcached-igbinary --disable-memcached-sasl && \
     make && \
     make install
-RUN docker-php-ext-enable mongo memcached redis
+RUN docker-php-ext-enable mongodb memcached redis
 
 RUN mkdir -p /var/www/html
 
