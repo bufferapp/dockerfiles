@@ -1,7 +1,5 @@
 FROM php:5.6.36-apache-stretch
 
-MAINTAINER Steven Cheng <steven@buffer.com>
-
 RUN apt-get update && \
       apt-get -yq install \
       build-essential \
@@ -22,7 +20,7 @@ RUN apt-get update && \
 RUN docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/
 RUN docker-php-ext-install -j$(nproc) gd mcrypt calendar pcntl
 RUN pecl install -f mongodb-1.3.4 && \
-    pecl install -f redis-2.2.8 && \
+    pecl install -f redis-4.1.1 && \
     pecl install -f imagick && \
     pecl install igbinary && \
     docker-php-ext-enable igbinary && \
