@@ -1,4 +1,4 @@
-FROM php:5.6.36-apache-stretch
+FROM php:5.6.39-apache-stretch
 
 RUN apt-get update && \
       apt-get -yq install \
