@@ -47,7 +47,6 @@ RUN mkdir -p /var/log/buffer && \
     rm -fr /var/www/html && \
     ln -s /app /var/www/html
 
-EXPOSE 80
-EXPOSE 443
+EXPOSE 80 443
 
 WORKDIR /app
