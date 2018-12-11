@@ -1,9 +1,9 @@
-IMG_NAME := bufferapp/apache-php
-IMG_VERSION := 7.1.25-apache-stretch-igbinary-mongodb-1.3.4
+IMG_NAME := bufferapp/php-cli
+IMG_VERSION := 7.1.25-cli-stretch
 
 .PHONY: build
 build:
-	docker build --no-cache -t $(IMG_NAME):$(IMG_VERSION) -f Dockerfile .
+	docker build -t $(IMG_NAME):$(IMG_VERSION) -f Dockerfile .
 
 .PHONY: run
 run:
