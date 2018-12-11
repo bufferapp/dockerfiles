@@ -1,5 +1,5 @@
-# PHP 5.6.38 on Debian 9 (stretch)
-FROM php:5.6.38-cli-stretch
+# PHP 5.6.39 on Debian 9 (stretch)
+FROM php:5.6.39-cli-stretch
 
 RUN apt-get update
 
