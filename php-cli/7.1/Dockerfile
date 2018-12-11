@@ -34,13 +34,6 @@ RUN pecl install -f mongodb-1.3.4 && \
     make install && \
     docker-php-ext-enable mongodb memcached redis imagick
 
-# Log folder for metrics and elastic search logging and configure /app folder w/ symlink
-RUN mkdir -p /var/log/buffer && \
-    chmod 777 /var/log/buffer && \
-    mkdir -p /app && \
-    rm -fr /var/www/html && \
-    ln -s /app /var/www/html
-
 RUN mkdir -p /var/www/html
 
 WORKDIR /var/www/html
