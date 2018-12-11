@@ -13,6 +13,7 @@ RUN apt-get update && \
       libjpeg-dev \
       libpng-dev \
       libz-dev \
+      nano \
       unzip \
       zip
 
