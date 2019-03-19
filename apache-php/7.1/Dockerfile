@@ -24,7 +24,7 @@ RUN docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-di
 RUN docker-php-ext-configure intl && \
     docker-php-ext-install intl
 
-RUN pecl install -f mongodb-1.3.4 && \
+RUN pecl install -f mongodb-1.5.3 && \
     pecl install -f redis-4.1.1 && \
     pecl install -f imagick && \
     pecl install igbinary && \
