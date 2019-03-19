@@ -22,10 +22,8 @@ RUN docker-php-ext-install -j$(nproc) gd mcrypt calendar pcntl
 RUN pecl install -f mongodb-1.3.4 && \
     pecl install -f redis-4.1.1 && \
     pecl install -f imagick && \
-    pecl install igbinary-1.2.1 && \
+    pecl install igbinary && \
     docker-php-ext-enable igbinary && \
-    pecl install intl && \
-    docker-php-ext-enable intl && \
     apt-get install -y libmemcached-dev=1.0.18-4.1 && \
     pecl download memcached-2.2.0 && \
     tar xzvf memcached-2.2.0.tgz && \
