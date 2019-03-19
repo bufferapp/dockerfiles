@@ -1,5 +1,5 @@
 IMG_NAME := bufferapp/apache-php
-IMG_VERSION := 7.1.25-apache-stretch-igbinary-mongodb-1.3.4-intl
+IMG_VERSION := 7.1.27
 
 .PHONY: build
 build:
