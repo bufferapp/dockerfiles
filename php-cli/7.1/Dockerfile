@@ -22,7 +22,7 @@ RUN apt-get update && \
 RUN docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ && \
     docker-php-ext-install -j$(nproc) gd mcrypt calendar pcntl &&\
     docker-php-ext-configure pgsql -with-pgsql=/usr/local/pgsql &&\
-    docker-php-ext-install pdo pdo_pgsql pgsql
+    docker-php-ext-install pdo pdo_pgsql pgsql sockets
 
 RUN pecl install -f mongodb-1.5.3 && \
     pecl install -f redis-4.1.1 && \
