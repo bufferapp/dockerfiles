@@ -22,7 +22,7 @@ RUN docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-di
 
 RUN pecl install -f mongodb-1.5.3 && \
     pecl install -f redis-4.1.1 && \
-    pecl install -f imagick && \
+    pecl install -f imagick-3.4.3 && \
     pecl install igbinary-2.0.8 && \
     docker-php-ext-enable igbinary && \
     apt-get install -y libmemcached-dev=1.0.18-4.1 && \
