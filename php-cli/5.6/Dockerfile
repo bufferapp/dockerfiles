@@ -28,7 +28,7 @@ RUN apt-get -y install nano vim
 # Install drivers and activate
 RUN pecl install -f mongodb-1.3.4 && \
     pecl install redis-4.1.1 && \
-    pecl install igbinary && \
+    pecl install igbinary-1.2.1 && \
     docker-php-ext-enable igbinary && \
     apt-get install -y libmemcached-dev=1.0.18-4.1 && \
     pecl download memcached-2.2.0 && \
