@@ -1,4 +1,4 @@
-FROM php:7.1.25-cli-stretch
+FROM php:7.1.27-cli-stretch
 
 RUN apt-get update && \
       apt-get -yq install \

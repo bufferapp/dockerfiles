@@ -1,5 +1,5 @@
 IMG_NAME := bufferapp/php-cli
-IMG_VERSION := 7.1.25-cli-stretch
+IMG_VERSION := 7.1.27
 
 .PHONY: build
 build:
