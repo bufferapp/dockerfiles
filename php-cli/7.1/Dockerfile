@@ -24,7 +24,7 @@ RUN docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-di
     docker-php-ext-configure pgsql -with-pgsql=/usr/local/pgsql &&\
     docker-php-ext-install pdo pdo_pgsql pgsql
 
-RUN pecl install -f mongodb-1.3.4 && \
+RUN pecl install -f mongodb-1.5.2 && \
     pecl install -f redis-4.1.1 && \
     pecl install -f imagick && \
     pecl install igbinary && \
