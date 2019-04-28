@@ -1,4 +1,4 @@
-FROM php:7.1.25-cli-stretch
+FROM php:7.1.27-cli-stretch
 
 RUN apt-get update && \
       apt-get -yq install \
@@ -22,12 +22,12 @@ RUN apt-get update && \
 RUN docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ && \
     docker-php-ext-install -j$(nproc) gd mcrypt calendar pcntl &&\
     docker-php-ext-configure pgsql -with-pgsql=/usr/local/pgsql &&\
-    docker-php-ext-install pdo pdo_pgsql pgsql
+    docker-php-ext-install pdo pdo_pgsql pgsql sockets
 
-RUN pecl install -f mongodb-1.3.4 && \
+RUN pecl install -f mongodb-1.5.3 && \
     pecl install -f redis-4.1.1 && \
-    pecl install -f imagick && \
-    pecl install igbinary && \
+    pecl install -f imagick-3.4.3 && \
+    pecl install igbinary-2.0.8 && \
     docker-php-ext-enable igbinary && \
     apt-get install -y libmemcached-dev=1.0.18-4.1 && \
     pecl download memcached-3.0.4 && \
