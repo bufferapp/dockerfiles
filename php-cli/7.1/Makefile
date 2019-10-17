@@ -1,5 +1,5 @@
 IMG_NAME := bufferapp/php-cli
-IMG_VERSION := 7.1.27
+IMG_VERSION := 7.1.32
 
 .PHONY: build
 build:
