@@ -1,4 +1,4 @@
-FROM php:7.1.27-apache-stretch
+FROM php:7.1.32-apache-stretch
 
 RUN apt-get update && \
       apt-get -yq install \
