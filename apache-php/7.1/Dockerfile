@@ -18,7 +18,8 @@ RUN apt-get update && \
 
 # Drivers and libraries
 RUN docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ && \
-    docker-php-ext-install -j$(nproc) gd mcrypt calendar pcntl sockets
+    docker-php-ext-configure opcache --enable-opcache && \
+    docker-php-ext-install -j$(nproc) gd mcrypt calendar pcntl sockets opcache exif
 
 RUN pecl install -f mongodb-1.5.3 && \
     pecl install -f redis-4.1.1 && \
@@ -35,6 +36,17 @@ RUN pecl install -f mongodb-1.5.3 && \
     make && \
     make install && \
     docker-php-ext-enable mongodb memcached redis imagick
+
+# Configure Opcode cache https://www.scalingphpbook.com/blog/2014/02/14/best-zend-opcache-settings.html
+RUN ( \
+  echo "opcache.memory_consumption=192"; \
+  echo "opcache.interned_strings_buffer=8"; \
+  echo "opcache.max_accelerated_files=25000"; \
+  echo ";opcache.revalidate_freq=2"; \
+  echo "opcache.validate_timestamps=0"; \
+  echo "opcache.fast_shutdown=1"; \
+  echo ";opcache.enable_cli=0"; \
+  ) > /usr/local/etc/php/conf.d/opcache-recommended.ini
 
 # Configure Apache
 COPY php.ini /usr/local/etc/php/
