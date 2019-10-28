@@ -1,4 +1,4 @@
-FROM php:7.1.32-cli-stretch
+FROM php:7.1.33-cli-stretch
 
 RUN apt-get update && \
       apt-get -yq install \
@@ -30,6 +30,7 @@ RUN pecl install -f mongodb-1.5.3 && \
     pecl install igbinary-2.0.8 && \
     docker-php-ext-enable igbinary && \
     apt-get install -y libmemcached-dev=1.0.18-4.1 && \
+    apt-get upgrade -y tzdata=2019c-0+deb9u1 && \
     pecl download memcached-3.0.4 && \
     tar xzvf memcached-3.0.4.tgz && \
     cd memcached-3.0.4 && \
