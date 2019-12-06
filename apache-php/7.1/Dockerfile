@@ -13,6 +13,7 @@ RUN apt-get update && \
       libjpeg-dev \
       libpng-dev \
       libz-dev \
+      vim \
       unzip \
       zip
 
