@@ -1,5 +1,5 @@
 IMG_NAME := bufferapp/apache-php
-IMG_VERSION := 7.1.33
+IMG_VERSION := 7.1.33-mongoext-1.7.4
 
 .PHONY: build
 build:
