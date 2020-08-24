@@ -6,7 +6,7 @@ RUN apt-get update && \
       libmagickwand-dev \
       libmemcached-dev \
       libmcrypt-dev \
-      libcurl3 \
+      libcurl4 \
       libssl-dev \
       libfreetype6-dev \
       libjpeg62-turbo-dev \
