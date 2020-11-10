@@ -1,5 +1,5 @@
 IMG_NAME := bufferapp/php-cli
-IMG_VERSION := 7.4.9-buster
+IMG_VERSION := 7.4.12-buster
 
 .PHONY: build
 build:

@@ -1,4 +1,4 @@
-FROM php:7.4.9-cli-buster
+FROM php:7.4.12-cli-buster
 
 RUN apt-get update && \
       apt-get -yq install \

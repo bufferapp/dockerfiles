@@ -1,5 +1,5 @@
 IMG_NAME := bufferapp/apache-php
-IMG_VERSION := 7.4.9-apache-buster
+IMG_VERSION := 7.4.12-apache-buster
 
 .PHONY: build
 build:

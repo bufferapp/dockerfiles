@@ -1,4 +1,4 @@
-FROM php:7.4.9-apache-buster
+FROM php:7.4.12-apache-buster
 
 RUN apt-get update && \
       apt-get -yq install \
